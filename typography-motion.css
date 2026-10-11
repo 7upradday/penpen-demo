@@ -1,0 +1,21 @@
+@font-face{font-family:Underwood;src:url('./assets/fonts/underwood_champion.ttf') format('truetype');font-display:swap;unicode-range:U+0000-024F}
+:root{--ui:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;--type:Underwood,var(--ui);font-family:var(--ui)}
+.app{--hand:MakiCircle;--letter:Underwood,var(--hand),'Kaiti SC',STKaiti,KaiTi,Xiaowei,serif}
+.app[data-handwriting=makiba]{--hand:Makiba}
+button,select{font-family:var(--type)}
+.paper textarea,.paper .salutation{font-family:var(--letter);font-weight:400;font-size:23px;line-height:1.65;letter-spacing:.3px}
+.paper textarea::placeholder{font-family:var(--letter);font-size:21px}
+.paper-top,.maker,.eyebrow,.key-line .type-key{font-family:Underwood,var(--ui)}
+.paper-bottom,#preedit,.candidate-line,.writing-nav,.writing-foot,.delivery,.home-heading,.small-note{font-family:var(--ui)}
+.maker{letter-spacing:2px;font-weight:400}
+#handwriting{max-width:86px;font:10px var(--ui);border:1px solid #b79e7e55;border-radius:5px;padding:5px 3px;background:#fff8eb88;color:#917a64;cursor:pointer}
+.writing-nav{gap:10px}.writing-nav>span{font-size:11px;letter-spacing:1px}
+.home-heading h1{font-weight:400;font-size:22px;letter-spacing:1px}
+.strike-assembly{position:absolute;left:calc(50% - 10px);top:-11px;width:20px;height:91px;perspective:260px;z-index:7;pointer-events:none}
+.striker{position:absolute;left:8px;top:9px;width:5px;height:77px;border:1px solid #81745e;border-radius:2px;background:linear-gradient(90deg,#817761,#fff5de 45%,#ae9e82 80%);transform-origin:50% 100%;transform:rotateX(68deg) rotateZ(-12deg);box-shadow:2px 1px 2px #35261844;will-change:transform}
+.type-slug{position:absolute;top:-7px;left:-5px;width:13px;height:10px;border-radius:2px;border:1px solid #847761;background:linear-gradient(#f4e8cc,#b8aa90 65%,#756951);box-shadow:0 1px 1px #211e1a44}
+.pivot{position:absolute;bottom:0;left:6px;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle,#5b4e3b 0 15%,#ebdabc 20% 50%,#8f8065 55%);box-shadow:0 1px 2px #33251c77}
+.carriage-marker{position:absolute;left:50%;top:-15px;width:18px;height:33px;z-index:6;transform:translateX(-50%);border:1px solid #b2a58f;border-radius:4px 4px 8px 8px;background:linear-gradient(90deg,#aa9e87,#fff4da 45%,#c1b399);box-shadow:0 2px 3px #33251c33;transition:left .09s linear;pointer-events:none}
+.carriage-marker:before{content:'';position:absolute;top:-6px;left:7px;height:9px;width:2px;background:#6d5e4b}
+.carriage-marker:after{content:'';position:absolute;top:7px;left:5px;width:6px;height:2px;background:#a73e31;border-radius:2px}
+@media(prefers-reduced-motion:reduce){.carriage-marker{transition:none}}

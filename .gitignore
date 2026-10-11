@@ -1,0 +1,11 @@
+node_modules/
+dist/
+vendor/
+reference/
+previews/
+.DS_Store
+.env
+.env.*
+*.zip
+*.blend
+*.blend1
