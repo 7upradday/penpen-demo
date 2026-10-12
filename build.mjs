@@ -1,11 +1,7 @@
 import {mkdir,copyFile,cp,readFile,writeFile,access} from 'node:fs/promises';
-import {fontCoverage,unicodeRanges} from './inspect-fonts.mjs';
 // The reviewed, externalized partner.html is committed; the original archive stays local.
 const hasOriginal=await access('reference/partner-original/penpen后段/penpen_demo.html').then(()=>true,()=>false);
 if(hasOriginal)await import('./import-partner.mjs');
-let fontCSS='';
-for(const [family,file] of [['MakiCircle','makiirclehand.ttf'],['Makiba','MakibaFont13.ttf']])fontCSS+=`@font-face{font-family:${family};src:url('./${file}') format('truetype');font-display:swap;unicode-range:${unicodeRanges(await fontCoverage(file))}}\n`;
-await writeFile('assets/fonts/maki-coverage.css',fontCSS);
 await mkdir('dist',{recursive:true});
 for(const file of ['index.html','style.css','typography-motion.css','receive.css','integration.css','partner.html','partner-integration.css','app.js','scene.js','ime.js','typewriter-motion.js','receive.js']) await copyFile(file,`dist/${file}`);
 await mkdir('vendor',{recursive:true});

@@ -9,9 +9,7 @@ createMailbox($('#stage')).then(result=>{model=result;$('#loading').hidden=true;
 try{letter.value=localStorage.getItem('xiaodou-draft')||''}catch{}
 const motion=attachTypewriter(letter,$('#typewriter'));
 function written(){if(!composing)motion.sync();update()}
-function setHandwriting(value){app.dataset.handwriting=value;$('#handwriting').value=value;try{localStorage.setItem('xiaodou-handwriting',value)}catch{}document.fonts.load(`20px ${value==='circle'?'MakiCircle':'Makiba'}`).then(()=>motion.caret())}
-let fontChoice='circle';try{fontChoice=localStorage.getItem('xiaodou-handwriting')==='makiba'?'makiba':'circle'}catch{}
-setHandwriting(fontChoice);$('#handwriting').onchange=e=>setHandwriting(e.target.value);
+document.fonts.load('20px LXGWWenKai').then(()=>motion.caret());
 $('#date').textContent=new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric'}).format(new Date());
 function update(){next.disabled=!letter.value.trim()||composing||sending||pending;if(composing){$('#draft-state').textContent='正在输入…';return}try{localStorage.setItem('xiaodou-draft',letter.value);$('#draft-state').textContent=pending?'请选择候选词。':letter.value?'草稿已收好。':'想到哪里，就写到哪里。'}catch{$('#draft-state').textContent='草稿暂未保存，请勿关闭页面。'}}
 function compose(){receiving.reset();home.hidden=true;writing.hidden=false;app.classList.add('editing');letter.focus();motion.reset();update()}

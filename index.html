@@ -1,3 +1,70 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f6f0e6"><title>小豆 · 慢慢写</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="assets/fonts/maki-coverage.css"><link rel="stylesheet" href="typography-motion.css"><link rel="stylesheet" href="receive.css"><script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script><link rel="stylesheet" href="integration.css"></head>
-<body><main id="app" class="app"><div class="penpen-gingham" aria-hidden="true"></div><div class="penpen-brand" aria-label="penpen"><svg viewBox="955 1125 195 88" xmlns="http://www.w3.org/2000/svg"><image href="assets/partner/closed.png" width="1212" height="1297"/></svg></div><button id="archive-entry" class="archive-entry">我的信盒</button><section id="home" class="screen home" aria-label="小豆的信箱"><header class="home-heading"><span class="eyebrow">LETTERS TO XIAODOU</span><h1>今天，想写些什么？</h1><p>小豆在这里，慢慢写就好。</p></header><div id="stage" class="stage" role="img" aria-label="立体红色信箱，企鹅抱着信坐在箱顶"><span id="loading">小豆正在准备信箱…</span></div><div id="delivered" class="delivery" hidden role="status"><p>你的信，收好啦。</p><span>等待小豆给你的回信</span><button id="done">回到信箱 ↩</button></div><footer class="home-footer"><div class="receive-entry"><span class="small-note">把今天，寄给小豆。</span><button id="receive" disabled>预览小狐狸来信 ↘</button></div><button id="compose" class="compose" aria-label="写一封信"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m8 23 3-9L24 3l5 5-12 13-9 2Zm3-2 10-11M7 28h19"/></svg></button></footer><div id="receive-actions" class="receive-actions" hidden><button id="open-reply">展开这封信</button><button id="replay-reply">再看一次出信</button></div></section>
-<section id="writing" class="screen writing" hidden aria-label="写给小豆"><nav class="writing-nav"><button id="back" aria-label="返回信箱，保留草稿">←</button><span>一封给小豆的信</span><select id="handwriting" aria-label="选择信件中文手写字体"><option value="circle">Maki 01</option><option value="makiba">Maki 02</option></select></nav><div class="paper"><div class="paper-top"><span id="date"></span><span>Dear Xiaodou,</span></div><label for="letter" class="salutation">亲爱的小豆，</label><textarea id="letter" lang="zh-CN" inputmode="text" autocomplete="off" spellcheck="false" aria-label="信件正文，支持中文输入" placeholder="今天，我想告诉你……"></textarea><div class="paper-bottom"><span id="draft-state">想到哪里，就写到哪里。</span><button id="next" disabled>Next <span>↗</span></button></div></div><div class="typewriter" id="typewriter" aria-hidden="true"><div class="paper-guide left"></div><div class="paper-guide right"></div><div class="return-lever"></div><div class="platen"><i></i><i></i></div><div class="chrome-bar"></div><div class="carriage-marker" id="carriage-marker"></div><div class="strike-assembly"><div class="striker" id="striker"><i class="type-slug"></i></div><i class="pivot"></i></div><div class="typewriter-body"><div class="typebasket" id="typebasket"></div><div class="ribbon"></div><div class="type-guide"></div><span class="maker">PENPEN</span><div class="screws"><i></i><i></i></div></div></div><div class="physical-keys" id="keyboard" role="group" aria-label="打字机键盘"><div class="ime-bar"><span id="preedit" aria-live="polite">中文 · 拼音选词</span><div class="candidate-line"><button id="candidate-prev" aria-label="上一页候选词">‹</button><div id="candidates"></div><button id="candidate-next" aria-label="下一页候选词">›</button></div></div><div class="key-line" data-keys="QWERTYUIOP"></div><div class="key-line" data-keys="ASDFGHJKL"></div><div class="key-line" data-keys="ZXCVBNM"></div><div class="keyboard-actions"><button id="language" aria-label="切换为英文输入">中 / EN</button><button id="key-space" aria-label="空格或确认候选词">空格 / 选词</button><button id="key-backspace" aria-label="删除一个字">⌫</button><button id="key-enter" aria-label="换行">↵</button></div></div><p class="writing-foot">慢慢写，小豆会认真读。</p></section><div id="notice" class="notice" hidden role="alert"></div><div class="home-indicator" aria-hidden="true"></div></main><script type="module" src="app.js"></script></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f6f0e6">
+  <title>小豆 · 慢慢写</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="typography-motion.css">
+  <link rel="stylesheet" href="receive.css">
+  <link rel="stylesheet" href="integration.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body>
+<main id="app" class="app">
+  <div class="penpen-gingham" aria-hidden="true"></div>
+  <div class="penpen-brand" aria-label="penpen"><svg viewBox="955 1125 195 88" xmlns="http://www.w3.org/2000/svg"><image href="assets/partner/closed.png" width="1212" height="1297"/></svg></div>
+  <button id="archive-entry" class="archive-entry">我的信盒</button>
+
+  <section id="home" class="screen home" aria-label="小豆的信箱">
+    <header class="home-heading">
+      <h1>今天，想写些什么？</h1>
+      <p id="home-status" aria-live="polite"></p>
+    </header>
+    <div id="stage" class="stage" role="img" aria-label="立体红色信箱，企鹅抱着信坐在箱顶"><span id="loading">小豆正在准备信箱…</span></div>
+    <div id="delivered" class="delivery" hidden role="status">
+      <span>约五秒后，小狐狸会寄来回信</span>
+      <button id="done">回到信箱 ↩</button>
+    </div>
+    <footer class="home-footer">
+      <button id="compose" class="compose" aria-label="写一封信"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m8 23 3-9L24 3l5 5-12 13-9 2Zm3-2 10-11M7 28h19"/></svg></button>
+    </footer>
+    <div id="receive-actions" class="receive-actions" hidden>
+      <button id="open-reply">展开这封信</button>
+      <button id="replay-reply">再看一次出信</button>
+    </div>
+  </section>
+
+  <section id="writing" class="screen writing" hidden aria-label="写给小豆">
+    <nav class="writing-nav">
+      <button id="back" aria-label="返回信箱，保留草稿">←</button>
+      <span>一封给小豆的信</span>
+      <span aria-hidden="true"></span>
+    </nav>
+    <div class="paper">
+      <div class="paper-top"><span id="date"></span><span>Dear Xiaodou,</span></div>
+      <label for="letter" class="salutation">亲爱的小豆，</label>
+      <textarea id="letter" lang="zh-CN" inputmode="text" autocomplete="off" spellcheck="false" aria-label="信件正文，支持中文输入" placeholder="今天，我想告诉你……"></textarea>
+      <div class="paper-bottom"><span id="draft-state">想到哪里，就写到哪里。</span><button id="next" disabled>Next <span>↗</span></button></div>
+    </div>
+    <div class="typewriter" id="typewriter" aria-hidden="true">
+      <div class="paper-guide left"></div><div class="paper-guide right"></div><div class="return-lever"></div>
+      <div class="platen"><i></i><i></i></div><div class="chrome-bar"></div><div class="carriage-marker" id="carriage-marker"></div>
+      <div class="strike-assembly"><div class="striker" id="striker"><i class="type-slug"></i></div><i class="pivot"></i></div>
+      <div class="typewriter-body"><div class="typebasket" id="typebasket"></div><div class="ribbon"></div><div class="type-guide"></div><span class="maker">PENPEN</span><div class="screws"><i></i><i></i></div></div>
+    </div>
+    <div class="physical-keys" id="keyboard" role="group" aria-label="打字机键盘">
+      <div class="ime-bar"><span id="preedit" aria-live="polite">中文 · 拼音选词</span><div class="candidate-line"><button id="candidate-prev" aria-label="上一页候选词">‹</button><div id="candidates"></div><button id="candidate-next" aria-label="下一页候选词">›</button></div></div>
+      <div class="key-line" data-keys="QWERTYUIOP"></div><div class="key-line" data-keys="ASDFGHJKL"></div><div class="key-line" data-keys="ZXCVBNM"></div>
+      <div class="keyboard-actions"><button id="language" aria-label="切换为英文输入">中 / EN</button><button id="key-space" aria-label="空格或确认候选词">空格 / 选词</button><button id="key-backspace" aria-label="删除一个字">⌫</button><button id="key-enter" aria-label="换行">↵</button></div>
+    </div>
+    <p class="writing-foot">慢慢写，小豆会认真读。</p>
+  </section>
+
+  <div id="notice" class="notice" hidden role="alert"></div>
+  <div class="home-indicator" aria-hidden="true"></div>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

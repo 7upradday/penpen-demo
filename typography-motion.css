@@ -1,14 +1,13 @@
 @font-face{font-family:Underwood;src:url('./assets/fonts/underwood_champion.ttf') format('truetype');font-display:swap;unicode-range:U+0000-024F}
+@font-face{font-family:LXGWWenKai;src:url('./assets/fonts/LXGWWenKai-Regular.woff2') format('woff2');font-weight:300;font-display:swap}
 :root{--ui:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;--type:Underwood,var(--ui);font-family:var(--ui)}
-.app{--hand:MakiCircle;--letter:Underwood,var(--hand),'Kaiti SC',STKaiti,KaiTi,Xiaowei,serif}
-.app[data-handwriting=makiba]{--hand:Makiba}
+.app{--letter:LXGWWenKai,'Kaiti SC',STKaiti,KaiTi,serif}
 button,select{font-family:var(--type)}
-.paper textarea,.paper .salutation{font-family:var(--letter);font-weight:400;font-size:23px;line-height:1.65;letter-spacing:.3px}
+.paper textarea,.paper .salutation{font-family:var(--letter);font-weight:300;font-size:23px;line-height:1.65;letter-spacing:.3px}
 .paper textarea::placeholder{font-family:var(--letter);font-size:21px}
 .paper-top,.maker,.eyebrow,.key-line .type-key{font-family:Underwood,var(--ui)}
 .paper-bottom,#preedit,.candidate-line,.writing-nav,.writing-foot,.delivery,.home-heading,.small-note{font-family:var(--ui)}
 .maker{letter-spacing:2px;font-weight:400}
-#handwriting{max-width:86px;font:10px var(--ui);border:1px solid #b79e7e55;border-radius:5px;padding:5px 3px;background:#fff8eb88;color:#917a64;cursor:pointer}
 .writing-nav{gap:10px}.writing-nav>span{font-size:11px;letter-spacing:1px}
 .home-heading h1{font-weight:400;font-size:22px;letter-spacing:1px}
 .strike-assembly{position:absolute;left:calc(50% - 10px);top:-11px;width:20px;height:91px;perspective:260px;z-index:7;pointer-events:none}
